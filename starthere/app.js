@@ -120,11 +120,20 @@ app.get('/', async (req, res) => {
   try {
     const [rate] = await db.execute(`
       SELECT
-        d.name AS dog_name,
-        d.size,
-        u.username AS owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id`
+        u.username AS walker_username,
+        COUNT(DISTINCT wr.rating_id) AS total_ratings,
+        ROUND(AVG(wr.rating), 1) AS average_rating,
+        COUNT(DISTINCT wrq.request_id) AS completed_walks
+      FROM Users u
+      LEFT JOIN WalkRatings wr ON u.user_id = wr.walker_id
+      LEFT JOIN WalkRequests wrq ON u.user_id = wrq.walker_id AND wrq.status = 'completed'
+      WHERE u.user_id IN (
+        SELECT walker_id FROM WalkRatings
+        UNION
+        SELECT walker_id FROM WalkRequests
+      )
+      GROUP BY u.user_id, u.username
+      ORDER BY walker_username;`
     );
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(rate, null, 2));
