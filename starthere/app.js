@@ -93,27 +93,30 @@ let db;
 //   }
 // });
 
-// Route to return Walk Request as JSON
-app.get('/', async (req, res) => {
-  try {
-    const [requests] = await db.execute(`
-      SELECT
-        wr.request_id,
-        d.name AS dog_name,
-        wr.requested_time,
-        wr.duration_minutes,
-        wr.location,
-        u.username AS owner_username
-      FROM WalkRequests wr
-      JOIN Dogs d ON wr.dog_id = d.dog_id
-      JOIN Users u ON d.owner_id = u.user_id`
-    );
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(requests, null, 2));
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch walk request list' });
-  }
-});
+// // Route to return Walk Request as JSON
+// app.get('/', async (req, res) => {
+//   try {
+//     const [requests] = await db.execute(`
+//       SELECT
+//         wr.request_id,
+//         d.name AS dog_name,
+//         wr.requested_time,
+//         wr.duration_minutes,
+//         wr.location,
+//         u.username AS owner_username
+//       FROM WalkRequests wr
+//       JOIN Dogs d ON wr.dog_id = d.dog_id
+//       JOIN Users u ON d.owner_id = u.user_id`
+//     );
+//     res.setHeader('Content-Type', 'application/json');
+//     res.send(JSON.stringify(requests, null, 2));
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to fetch walk request list' });
+//   }
+// });
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
