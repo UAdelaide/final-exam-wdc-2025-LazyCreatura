@@ -56,7 +56,7 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'BBQ'), '2026-02-28 12:06:30', 80, 'Blue Square', 'open');
       `);
     //Insert Data for WalkRating
-
+      await db.execute(``);
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
