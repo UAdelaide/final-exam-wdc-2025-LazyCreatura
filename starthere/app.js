@@ -64,7 +64,7 @@ app.get('/', async (req, res) => {
       JOIN Users u ON d.owner_id = u.user_id
     `);
     res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(dogs, null, 2)); // Pretty-print JSON with 2-space indent
+    res.send(JSON.stringify(dogs, null, 2)); // Pretty-print JSON with 2-space indent
     res.json(dogs);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch dogs list' });
