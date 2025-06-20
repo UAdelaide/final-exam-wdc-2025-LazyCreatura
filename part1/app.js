@@ -34,7 +34,7 @@ let db;
       ('Hye', 'miniHye@example.com', 'hashed777', 'owner'),
       ('wanwan', 'Wank@example.com', 'hashed777', 'walker');
       `);
-        
+    //Insesrt Data for Dogs
       await db.execute(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
