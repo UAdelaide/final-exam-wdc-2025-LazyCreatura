@@ -83,16 +83,20 @@ app.get('/', async (req, res) => {
 // Route to return dogs as JSON
 app.get('/', async (req, res) => {
   try {
-    const [dogs] = await db.execute(`
+    const [requests] = await db.execute(`
       SELECT
+        wr.request_id,
         d.name AS dog_name,
-        d.size,
+        wr.requested_time,
+        wr.duration_minutes,
+        wr.location,
         u.username AS owner_username
-      FROM Dogs d
+      FROM WalkRequests wr
+      JOIN Dogs d ON wr.dog_id = d.dog_id
       JOIN Users u ON d.owner_id = u.user_id`
     );
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(dogs, null, 2));
+    res.send(JSON.stringify(request, null, 2));
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch dogs list' });
   }
