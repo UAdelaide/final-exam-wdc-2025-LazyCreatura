@@ -80,7 +80,22 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/',)
+app.get('/', async (req, res) =>{
+    try {
+    const [requests] = await db.execute(`
+      SELECT
+        wr.request_id,
+        d.name AS dog_name,
+        wr.requested_time,
+        wr.duration_minutes,
+        wr.location,
+        u.username AS owner_username
+      FROM WalkRequests wr
+      JOIN Dogs d ON wr.dog_id = d.dog_id
+      JOIN Users u ON d.owner_id = u.user_id
+    `);
+
+}
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
