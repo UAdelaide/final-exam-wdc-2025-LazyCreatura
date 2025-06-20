@@ -19,7 +19,7 @@
         <div><strong>Fun Fact:</strong> Loves to nap in the sun</div>
       </div>
       <div>
-        <type="button" v-if="step === 0" class="step-btn" @click="step = 1">Step 1: Ready?</button>
+        <"button" v-if="step === 0" class="step-btn" @click="step = 1">Step 1: Ready?</button>
         <button v-else-if="step === 1" class="step-btn" @click="step = 2">Step 2: Are you sure?</button>
         <button v-else-if="step === 2" class="step-btn" @click="getDog">Step 3: Show Dog of the Day</button>
         <img v-if="dogImg" :src="dogImg" class="dog-img distract" />
