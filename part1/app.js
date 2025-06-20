@@ -46,7 +46,8 @@ let db;
       )
     `);
     await db.execute('
-      ');
+    CEATE TABLE IF NOT EXIST Dogs(
+    )      ');
 
 
     // Insert data if table is empty
