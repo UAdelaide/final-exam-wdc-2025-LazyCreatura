@@ -81,7 +81,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/', async (req, res) =>{
-    try {
+  try {
     const [requests] = await db.execute(`
       SELECT
         wr.request_id,
