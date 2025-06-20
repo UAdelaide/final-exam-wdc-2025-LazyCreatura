@@ -68,7 +68,7 @@ let db;
       (SELECT user_id FROM Users WHERE username = 'Hye'),
       (SELECT user_id FROM Users WHERE username = 'carol123'),
       5,
-      'Excellent service for Bella!');`);
+      'Not bad!');`);
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
