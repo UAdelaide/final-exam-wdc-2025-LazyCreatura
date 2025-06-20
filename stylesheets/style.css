@@ -1,60 +1,55 @@
-body {
-    background: #222;
-    color: #333;
-    font-family: Comic Sans MS, cursive, sans-serif;
-}
-.container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 50px 200px 10px 100px;
-    border: 5px dashed yellow;
-    padding: 40px;
-}
-.dog-details {
-    font-size: 2em;
-    background: #333;
-    color: #222;
-    padding: 30px;
-    border-radius: 50px 0 50px 0;
-    margin-left: 100px;
-}
-.dog-img {
-    border: 10px dotted red;
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-}
-.step-btn {
-    margin: 10px;
-    padding: 20px 40px;
-    font-size: 1.5em;
-    background: #ff0;
-    color: #f00;
-    border: 3px solid #0f0;
-    border-radius: 20px;
-    cursor: pointer;
-}
-.distract {
-    animation: spin 1s linear infinite;
-}
-.scrolling-text {
-      margin-top: 100px;
-      font-size: 1.2em;
-      color: #444;
+ body {
+      background-color: #000;
+      color: #333;
+      font-size: 10px;
+      font-family: 'Comic Sans MS', cursive;
       overflow: hidden;
-      white-space: nowrap;
-}
-.scrolling-text span {
-      display: inline-block;
-      animation: scroll-left 10s linear infinite;
-}
-@keyframes scroll-left {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    }
+    .container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .dog-image {
+      width: 150px;
+      height: 150px;
+      animation: spin 2s infinite linear;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .dog-info {
+      animation: blink 0.5s infinite;
+      line-height: 1;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .buttons {
+      margin-top: 10px;
+    }
+    .action-button {
+      width: 20px;
+      height: 20px;
+      font-size: 8px;
+      margin: 2px;
+      padding: 2px;
+      background-color: #555;
+      color: #666;
+      border: 1px solid #444;
+      cursor: pointer;
+    }
+    .action-button:hover {
+      background-color: #777;
+    }
+    .info-text {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 100px;
+      animation: slide 3s infinite;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(200px); }
+      100% { transform: translateX(0); }
+    }
