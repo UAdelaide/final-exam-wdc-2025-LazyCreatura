@@ -57,9 +57,11 @@ let db;
       `);
     //Insert Data for WalkRating
       await db.execute(`
-      INSERT INTO WalkRatings (rating_id, request_id, walker_id, owner_id, rating, comments, rated_at)
+      INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments, rated_at)
       VALUES
-
+        ((SELECT request_id FROM WalkRequests WHERE status = 'accepted' LIMIT 1), (SELECT user_id FROM Users WHERE username = 'bobwalker'), (SELECT user_id FROM Users WHERE username = 'alice123'), 4),
+        ((SELECT request_id FROM WalkRequests WHERE status = 'accepted' LIMIT 1 OFFSET 1), (SELECT user_id FROM Users WHERE username = 'emilywalker'), (SELECT user_id FROM Users WHERE username = 'carol123'), 5);
+      `);
       `);
 
 
