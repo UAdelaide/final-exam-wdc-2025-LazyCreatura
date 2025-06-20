@@ -61,7 +61,7 @@ let db;
       VALUES
       (1, 2, 1, 4, 'Mad Max'),
       (2, 5, 3, 5, 'Cute puppy as well as her name'),
-      (3, 2, 4, 3, 'Good effort with Rocky.');
+      (3, 2, 4, 3, 'Rocky the rock');
       `);
 
   } catch (err) {
