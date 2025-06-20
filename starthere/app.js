@@ -55,6 +55,16 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Jolibee'), '2025-06-30 18:49:00', 10, 'Central Hub', 'accepted'),
       ((SELECT dog_id FROM Dogs WHERE name = 'BBQ'), '2026-02-28 12:06:30', 80, 'Blue Square', 'open');
       `);
+    //Insert Data for WalkRequest
+      await db.execute(`
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
+      VALUES
+      ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Chicharon'), '2025-06-11 10:00:00', 60, 'Central Market', 'cancelled'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Jolibee'), '2025-06-30 18:49:00', 10, 'Central Hub', 'accepted'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'BBQ'), '2026-02-28 12:06:30', 80, 'Blue Square', 'open');
+      `);
 
 
   } catch (err) {
@@ -62,23 +72,23 @@ let db;
   }
 })();
 
-// Route to return dogs as JSON
-app.get('/', async (req, res) => {
-  try {
-    const [dogs] = await db.execute(`
-      SELECT
-        d.name AS dog_name,
-        d.size,
-        u.username AS owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id`
-    );
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(dogs, null, 2));
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch dogs list' });
-  }
-});
+// // Route to return dogs as JSON
+// app.get('/', async (req, res) => {
+//   try {
+//     const [dogs] = await db.execute(`
+//       SELECT
+//         d.name AS dog_name,
+//         d.size,
+//         u.username AS owner_username
+//       FROM Dogs d
+//       JOIN Users u ON d.owner_id = u.user_id`
+//     );
+//     res.setHeader('Content-Type', 'application/json');
+//     res.send(JSON.stringify(dogs, null, 2));
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to fetch dogs list' });
+//   }
+// });
 
 // Route to return Walk Request as JSON
 app.get('/', async (req, res) => {
