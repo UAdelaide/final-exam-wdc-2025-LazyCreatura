@@ -45,7 +45,8 @@ let db;
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    await db.execute(``
+
+    await db.execute(`
     CEATE TABLE IF NOT EXISTS Dogs(
     dog_id INT AUTO_INCREMENT PRIMARY KEY,
     owner_id INT NOT NULL,
@@ -53,7 +54,7 @@ let db;
     size ENUM('small', 'medium', 'large') NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
     )
-    ');
+    `);
 
 
     // Insert data if table is empty
