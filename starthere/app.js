@@ -65,7 +65,7 @@ let db;
       4,
       'Great walk with Max!'),
       ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')) AND status = 'accepted' LIMIT 1),
-      (SELECT user_id FROM Users WHERE username = 'emilywalker'),
+      (SELECT user_id FROM Users WHERE username = 'Hye'),
       (SELECT user_id FROM Users WHERE username = 'carol123'),
       5,
       'Excellent service for Bella!');`);
