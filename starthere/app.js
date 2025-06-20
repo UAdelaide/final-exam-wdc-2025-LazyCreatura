@@ -89,7 +89,8 @@ app.get('/', async (req, res) => {
         requested_time,
         duration,
         location,
-        u.username AS owner_
+        u.username AS owner_username
+      FROM WalkRequests
       `);
 
 app.use(express.static(path.join(__dirname, 'public')));
