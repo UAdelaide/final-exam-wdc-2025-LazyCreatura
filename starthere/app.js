@@ -63,12 +63,12 @@ let db;
       (SELECT user_id FROM Users WHERE username = 'bobwalker'),
       (SELECT user_id FROM Users WHERE username = 'alice123'),
       4,
-      'Great walk with Max!'),
+      'Meh!'),
       ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')) AND status = 'accepted' LIMIT 1),
       (SELECT user_id FROM Users WHERE username = 'Hye'),
       (SELECT user_id FROM Users WHERE username = 'carol123'),
       5,
-      'Not bad!');`);
+      'Quite Comfortable');`);
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
