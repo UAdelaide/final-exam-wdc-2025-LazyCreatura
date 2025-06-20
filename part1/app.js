@@ -14,7 +14,7 @@ app.use(cookieParser());
 let db;
 
 (async () => {
-
+  try {
     //connect to the created database
     db = await mysql.createConnection({
       host: '127.0.0.1',
