@@ -60,7 +60,7 @@ let db;
       INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
       VALUES
       (1, 2, 1, 4, 'Mad Max'),
-      (2, 5, 3, 5, 'Excellent service for Bella!'),
+      (2, 5, 3, 5, 'Cute puppy as well as her name'),
       (3, 2, 4, 3, 'Good effort with Rocky.');
       `);
 
