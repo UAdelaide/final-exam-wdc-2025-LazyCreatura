@@ -47,13 +47,13 @@ let db;
     }
     //Insert Data for WalkRequest
       await db.execute(`
-      INSERT INTO Dogs (owner_id, name, size)
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
       VALUES
-      ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
-      ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small' ),
-      ((SELECT user_id FROM Users WHERE username = 'bobwalker'), 'Chicharon', 'large'),
-      ((SELECT user_id FROM Users WHERE username = 'Hye'), 'Jolibee', 'large'),
-      ((SELECT user_id FROM Users WHERE username = 'wanwan'), 'BBQ', 'small');
+      ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Chicharon'), '2025-06-11 10:00:00', 60, 'Central Market', 'cancelled'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'Jolibee'), '2025-06-30 18:49:00', 10, 'Central Hub', 'accepted'),
+      ((SELECT dog_id FROM Dogs WHERE name = 'BBQ'), '2026-02-28 12:06:30', 80, 'Blue Square', 'open');
       `);
 
 
