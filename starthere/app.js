@@ -115,23 +115,23 @@ let db;
 //   }
 // });
 
-// // Route to return dogs as JSON
-// app.get('/', async (req, res) => {
-//   try {
-//     const [dogs] = await db.execute(`
-//       SELECT
-//         d.name AS dog_name,
-//         d.size,
-//         u.username AS owner_username
-//       FROM Dogs d
-//       JOIN Users u ON d.owner_id = u.user_id`
-//     );
-//     res.setHeader('Content-Type', 'application/json');
-//     res.send(JSON.stringify(dogs, null, 2));
-//   } catch (err) {
-//     res.status(500).json({ error: 'Failed to fetch dogs list' });
-//   }
-// });
+// Route to return dogs as JSON
+app.get('/', async (req, res) => {
+  try {
+    const [rate] = await db.execute(`
+      SELECT
+        d.name AS dog_name,
+        d.size,
+        u.username AS owner_username
+      FROM Dogs d
+      JOIN Users u ON d.owner_id = u.user_id`
+    );
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(rate, null, 2));
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch dogs list' });
+  }
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
