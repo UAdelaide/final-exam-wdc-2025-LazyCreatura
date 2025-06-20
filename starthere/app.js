@@ -52,26 +52,15 @@ let db;
 })();
 
 // Route to return dogs as JSON
-// app.get('/', async (req, res) => {
-//   try {
-//     const [dogs] = await db.execute('SELECT * FROM Dogs');
-//     res.json(dogs);
-//   } catch (err) {
-//     res.status(500).json({ error: 'Failed to fetch dogs list' });
-//   }
-// });
-app.get('/api/dogs', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
-    const [rows] = await db.execute(`
-      SELECT d.name AS dog_name, d.size, u.username AS owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id
-    `);
-    res.json(rows);
+    const [dogs] = await db.execute('SELECT * FROM Dogs');
+    res.json(dogs);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve dogs' });
+    res.status(500).json({ error: 'Failed to fetch dogs list' });
   }
 });
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
