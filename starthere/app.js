@@ -57,7 +57,18 @@ let db;
       `);
     //Insert Data for WalkRating
       await db.execute(`
-
+      INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
+      VALUES
+      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')) AND status IN ('accepted', 'open') LIMIT 1),
+      (SELECT user_id FROM Users WHERE username = 'bobwalker'),
+      (SELECT user_id FROM Users WHERE username = 'alice123'),
+      4,
+      'Meh!'),
+      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')) AND status IN ('accepted', 'open') LIMIT 1),
+      (SELECT user_id FROM Users WHERE username = 'emilywalker'), -- Changed from 'Hye' to existing user
+      (SELECT user_id FROM Users WHERE username = 'carol123'),
+      5,
+      'Quite Comfortable');
       `);
 
   } catch (err) {
