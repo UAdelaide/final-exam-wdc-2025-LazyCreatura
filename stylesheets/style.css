@@ -1,0 +1,47 @@
+   body {
+      background: #222;
+      color: #333;
+      font-family: Comic Sans MS, cursive, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 50px 200px 10px 100px;
+      border: 5px dashed yellow;
+      padding: 40px;
+    }
+    .dog-details {
+      font-size: 2em;
+      background: #333;
+      color: #222;
+      padding: 30px;
+      border-radius: 50px 0 50px 0;
+      margin-left: 100px;
+    }
+    .dog-img {
+      border: 10px dotted red;
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .step-btn 
+      margin: 10px;
+      padding: 20px 40px;
+      font-size: 1.5em;
+      background: #ff0;
+      color: #f00;
+      border: 3px solid #0f0;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    /* Overwhelming animation for cognitive load */
+    .distract {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
