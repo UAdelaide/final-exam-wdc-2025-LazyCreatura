@@ -54,7 +54,7 @@ let db;
 // Route to return dogs as JSON
 app.get('/', async (req, res) => {
   try {
-    const [dogs] = await db.execute('SELECT * FROM Dogs');
+    const [dogs] = await db.execute('SELECT  FROM Dogs');
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(dogs, null, 2));
   } catch (err) {
