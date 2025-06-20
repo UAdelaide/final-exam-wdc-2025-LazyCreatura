@@ -83,7 +83,8 @@ app.get('/', async (req, res) => {
 app.get('/', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
-      
+      SELECT
+        request_id
       `);
 
 app.use(express.static(path.join(__dirname, 'public')));
