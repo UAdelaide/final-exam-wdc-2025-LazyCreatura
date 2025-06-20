@@ -56,7 +56,19 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'BBQ'), '2026-02-28 12:06:30', 80, 'Blue Square', 'open');
       `);
     //Insert Data for WalkRating
-      await db.execute(``);
+      await db.execute(`
+      INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
+      VALUES
+      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')) AND status = 'accepted' LIMIT 1),
+      (SELECT user_id FROM Users WHERE username = 'bobwalker'),
+      (SELECT user_id FROM Users WHERE username = 'alice123'),
+      4,
+      'Great walk with Max!'),
+      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')) AND status = 'accepted' LIMIT 1),
+      (SELECT user_id FROM Users WHERE username = 'emilywalker'),
+      (SELECT user_id FROM Users WHERE username = 'carol123'),
+      5,
+      'Excellent service for Bella!');`);
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
