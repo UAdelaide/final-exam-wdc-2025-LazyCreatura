@@ -59,16 +59,7 @@ let db;
       await db.execute(`
       INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
       VALUES
-      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')) AND status = 'accepted' LIMIT 1),
-      (SELECT user_id FROM Users WHERE username = 'bobwalker'),
-      (SELECT user_id FROM Users WHERE username = 'alice123'),
-      4,
-      'Meh!'),
-      ((SELECT request_id FROM WalkRequests WHERE dog_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')) AND status = 'accepted' LIMIT 1),
-      (SELECT user_id FROM Users WHERE username = 'Hye'),
-      (SELECT user_id FROM Users WHERE username = 'carol123'),
-      5,
-      'Quite Comfortable');`);
+`);
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
