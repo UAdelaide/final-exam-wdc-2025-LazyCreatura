@@ -129,7 +129,7 @@ app.get('/', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(rate, null, 2));
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch dogs list' });
+    res.status(500).json({ error: 'Failed to see rating' });
   }
 });
 
