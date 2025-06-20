@@ -56,8 +56,7 @@ app.get('/', async (req, res) => {
   try {
     const [dogs] = await db.execute('SELECT * FROM Dogs');
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(dogs, null, 2)); // Pretty-print JSON with 2-space indent
-    res.json(dogs);
+    res.send(JSON.stringify(dogs, null, 2)); 
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch dogs list' });
   }
