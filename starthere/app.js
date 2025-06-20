@@ -80,7 +80,7 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Route to return dogs as JSON
+// Route to return Walk Request as JSON
 app.get('/', async (req, res) => {
   try {
     const [requests] = await db.execute(`
@@ -96,9 +96,9 @@ app.get('/', async (req, res) => {
       JOIN Users u ON d.owner_id = u.user_id`
     );
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(request, null, 2));
+    res.send(JSON.stringify(requests, null, 2));
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch dogs list' });
+    res.status(500).json({ error: 'Failed to fetch walk request list' });
   }
 });
 app.use(express.static(path.join(__dirname, 'public')));
