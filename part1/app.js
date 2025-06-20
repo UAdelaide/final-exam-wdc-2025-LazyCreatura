@@ -22,7 +22,7 @@ let db;
       password: '',
       database: 'DogWalkService'
     });
-    // Insert data if table is empty
+    // Insert Data for Users
     const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
     if (rows[0].count === 0) {
       await db.execute(`
@@ -34,7 +34,7 @@ let db;
       ('Hye', 'miniHye@example.com', 'hashed777', 'owner'),
       ('wanwan', 'Wank@example.com', 'hashed777', 'walker');
       `);
-    //Insesrt Data for Dogs
+    //Insert Data for Dogs
       await db.execute(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
@@ -51,7 +51,7 @@ let db;
   }
 })();
 
-// Route to return books as JSON
+// Route to return dogs as JSON
 app.get('/', async (req, res) => {
   try {
     const [books] = await db.execute('SELECT * FROM books');
