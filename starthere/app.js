@@ -87,6 +87,7 @@ app.get('/', async (req, res) => {
         request_id,
         d.name AS dog_name,
         requested_time,
+        duration,
         
       `);
 
