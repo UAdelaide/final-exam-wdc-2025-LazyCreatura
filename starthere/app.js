@@ -45,6 +45,17 @@ let db;
       ((SELECT user_id FROM Users WHERE username = 'wanwan'), 'BBQ', 'small');
       `);
     }
+        //Insert Data for Dogs
+      await db.execute(`
+      INSERT INTO Dogs (owner_id, name, size)
+      VALUES
+      ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+      ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small' ),
+      ((SELECT user_id FROM Users WHERE username = 'bobwalker'), 'Chicharon', 'large'),
+      ((SELECT user_id FROM Users WHERE username = 'Hye'), 'Jolibee', 'large'),
+      ((SELECT user_id FROM Users WHERE username = 'wanwan'), 'BBQ', 'small');
+      `);
+
 
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
