@@ -45,7 +45,7 @@ let db;
       ((SELECT user_id FROM Users WHERE username = 'wanwan'), 'BBQ', 'small');
       `);
     }
-        //Insert Data for Dogs
+    //Insert Data for WalkRequest
       await db.execute(`
       INSERT INTO Dogs (owner_id, name, size)
       VALUES
