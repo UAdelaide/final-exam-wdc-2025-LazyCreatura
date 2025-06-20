@@ -88,7 +88,8 @@ app.get('/', async (req, res) => {
         d.name AS dog_name,
         requested_time,
         duration,
-        
+        location,
+        u.username AS owner_
       `);
 
 app.use(express.static(path.join(__dirname, 'public')));
