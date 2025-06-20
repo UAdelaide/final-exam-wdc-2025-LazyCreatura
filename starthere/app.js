@@ -15,56 +15,49 @@ let db;
 
 (async () => {
   try {
-    // Connect to MySQL without specifying a database
-    const connection = await mysql.createConnection({
-      host: '127.0.0.1',
-      user: 'root',
-      password: '' // Set your MySQL root password
-    });
-
-    // Create the database if it doesn't exist
-    await connection.query('CREATE DATABASE IF NOT EXISTS testdb');
-    await connection.end();
-
-    // Now connect to the created database
+    //connect to the created database
     db = await mysql.createConnection({
       host: '127.0.0.1',
       user: 'root',
       password: '',
-      database: 'testdb'
+      database: 'DogWalkService'
     });
-
-    // Create a table if it doesn't exist
-    await db.execute(`
-      CREATE TABLE IF NOT EXISTS books (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255),
-        author VARCHAR(255)
-      )
-    `);
-
-    // Insert data if table is empty
-    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
+    // Insert Data for Users
+    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
     if (rows[0].count === 0) {
       await db.execute(`
-        INSERT INTO books (title, author) VALUES
-        ('1984', 'George Orwell'),
-        ('To Kill a Mockingbird', 'Harper Lee'),
-        ('Brave New World', 'Aldous Huxley')
+      INSERT INTO Users (username, email, password_hash, role)
+      VALUES
+      ('alice123', 'alice@example.com', 'hashed123', 'owner'),
+      ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
+      ('carol123', 'carol@example.com', 'hashed789', 'owner'),
+      ('Hye', 'miniHye@example.com', 'hashed777', 'owner'),
+      ('wanwan', 'Wank@example.com', 'hashed777', 'walker');
+      `);
+    //Insert Data for Dogs
+      await db.execute(`
+      INSERT INTO Dogs (owner_id, name, size)
+      VALUES
+      ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+      ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small' ),
+      ((SELECT user_id FROM Users WHERE username = 'bobwalker'), 'Chicharon', 'large'),
+      ((SELECT user_id FROM Users WHERE username = 'Hye'), 'Jolibee', 'large'),
+      ((SELECT user_id FROM Users WHERE username = 'wanwan'), 'BBQ', 'small');
       `);
     }
+
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
   }
 })();
 
-// Route to return books as JSON
+// Route to return dogs as JSON
 app.get('/', async (req, res) => {
   try {
-    const [books] = await db.execute('SELECT * FROM books');
+    const [dogs] = await db.execute('SELECT * FROM Dogs');
     res.json(books);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch books' });
+    res.status(500).json({ error: 'Failed to fetch dogs list' });
   }
 });
 
