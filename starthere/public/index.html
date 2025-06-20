@@ -5,50 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Walking Service - Dog of the Day</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
- <div id="app">
-    <h1 class="distract">🐶 Welcome to the Dog Walking Service! 🐾</h1>
-    <div class="container">
-      <div class="dog-details">
-        <div><strong>Name:</strong> Sir Barkalot</div>
-        <div><strong>Breed:</strong> Imaginary Retriever</div>
-        <div><strong>Age:</strong> 3 years</div>
-        <div><strong>Favorite Activity:</strong> Chasing invisible squirrels</div>
-        <div><strong>Fun Fact:</strong> Loves to nap in the sun</div>
-      </div>
-      <div>
-        <button type="button" v-if="step === 0" class="step-btn" @click="step = 1">Step 1: Ready?</button>
-        <button type="button" v-else-if="step === 1" class="step-btn" @click="step = 2">Step 2: Are you sure?</button>
-        <button type="button" v-else-if="step === 2" class="step-btn" @click="getDog">Step 3: Show Dog of the Day</button>
-        <img v-if="dogImg" src="dogImg" alt="Dog Image" class="dog-img distract" />
-      </div>
-    </div>
-    <div style="margin-top: 100px; font-size: 1.2em; color: #444;">
-      <span>Dog walking is fun! Dog walking is fun! Dog walking is fun!</span>
-    </div>
-  </div>
-  <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          dogImg: '',
-          step: 0
-        };
-      },
-      methods: {
-        getDog() {
-          fetch('https://dog.ceo/api/breeds/image/random')
-            .then(res => res.json())
-            .then(data => {
-              this.dogImg = data.message;
-              this.step = 3;
-            });
-        }
-      }
-    }).mount('#app');
-  </script>
+    <h1>Express</h1>
+    <p>Welcome to Express</p>
 </body>
 </html>
