@@ -80,18 +80,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/', async (req, res) => {
-  try {
-    const [req] = await db.execute(`
-      SELECT
-        request_id,
-        d.name AS dog_name,
-        requested_time,
-        duration,
-        location,
-        u.username AS owner_username
-      FROM WalkRequests
-      `);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
