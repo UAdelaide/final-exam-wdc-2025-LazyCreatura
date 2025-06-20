@@ -45,7 +45,8 @@ let db;
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    
+    await db.execute('
+      ');
 
 
     // Insert data if table is empty
