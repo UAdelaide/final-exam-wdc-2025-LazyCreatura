@@ -59,9 +59,9 @@ let db;
       await db.execute(`
       INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
       VALUES
-      (1, 2, 1, 4, 'Great walk with Max!'), -- Assuming request_id=1, walker_id=2 (bobwalker), owner_id=1 (alice123)
-      (2, 5, 3, 5, 'Excellent service for Bella!'), -- Assuming request_id=2, walker_id=5 (emilywalker), owner_id=3 (carol123)
-      (3, 2, 4, 3, 'Good effort with Rocky.'); -- Assuming request_id=3, walker_id=2 (bobwalker), owner_id=4 (davidowner)
+      (1, 2, 1, 4, 'Mad Max'),
+      (2, 5, 3, 5, 'Excellent service for Bella!'),
+      (3, 2, 4, 3, 'Good effort with Rocky.');
       `);
 
   } catch (err) {
